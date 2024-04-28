@@ -36,17 +36,14 @@ checkpoint1() {
     echo "Checkpoint 1"
 }
 
-
 checkpoint2() {
     update_checkpoint "Checkpoint2"
     read -r -p "Checkpoint 2. Enter to continue, Ctrl-C to exit"
 }
 
-
 checkpoint3() {
     update_checkpoint "Checkpoint3"
-    read -r -p "Checkpoint 3. Enter to finish and cleanup, Ctrl-C to exit"
-    cleanup 
+    read -r -p "Checkpoint 3. Enter to finish and cleanup, Ctrl-C to exit"    
 }
 
 main() {
@@ -70,7 +67,8 @@ main() {
         case $Checkpoint in
             "Checkpoint1") checkpoint1 ;;
             "Checkpoint2") checkpoint2 ;;
-            "Checkpoint3") checkpoint3 ;;
+            "Checkpoint3") checkpoint3 && cleanup ;;
+            *) echo "Checkpoint $Checkpoint doesnt have any linked function... skipping to ${CHECKPOINTS[$(( i + 1))]}"
         esac
     done
 }
