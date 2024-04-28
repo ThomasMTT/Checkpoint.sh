@@ -23,7 +23,7 @@ get_last_checkpoint() {
     if [ -f "$CHECKPOINT_FILE" ]; then
         cat $CHECKPOINT_FILE
     else
-        echo "Checkpoint1"  # Default to the beginning if no checkpoint exists
+        echo "${CHECKPOINTS[0]}"  # Default to the beginning if no checkpoint exists
     fi
 }
 
